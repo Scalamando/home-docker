@@ -4,7 +4,7 @@ This respository contains my setup for some local services using docker. All
 services are reverse proxied through traefik on ports 80 and 443 to allow for
 easy access using the `*.localhost` domain. The services in this setup
 currently include [Actual Budget](https://actualbudget.org/),
-[glance](https://github.com/glanceapp/glance) and the [traefik
+[glance](https://github.com/glanceapp/glance), [ollama](https://ollama.com/) and the [traefik
 dashboard](https://doc.traefik.io/traefik/operations/dashboard/).
 
 ## Setup
@@ -20,8 +20,11 @@ mkcert \
     -cert-file traefik/certs/local-cert.pem \
     -key-file traefik/certs/local-key.pem \
     actual.localhost \
-    traefik.localhost \
-    glance.localhost
+    glance.localhost \
+    ollama.localhost \
+    traefik.localhost
+# or use the certs helper script
+./certs.sh
 ```
 
 > [!IMPORTANT]
@@ -34,5 +37,6 @@ compose up -d`. Now, all services should be accessible:
 
 - *Actual Budget*: https://actual.localhost
 - *Glance*: https://glance.localhost
+- *Ollama*: https://ollama.localhost
 - *Traefik Dashboard*: https://traefik.localhost
 
