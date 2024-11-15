@@ -1,0 +1,50 @@
+services:
+  reverse-proxy:
+    image: traefik:v3.2
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080" # The Web UI (enabled by --api.insecure=true)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/certs:/etc/certs:ro
+      - ./traefik/traefik.yml:/traefik/traefik.yml:ro
+    security_opt:
+      - no-new-privileges:true
+    command:
+      - "--api.insecure=true"
+      - "--log.level=INFO"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedByDefault=false"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entryPoints.websecure.address=:443"
+      # tls
+      - "--entryPoints.websecure.http.tls=true"
+      - "--providers.file.filename=/traefik/traefik.yml"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik.rule=Host(`traefik.localhost`)
+      - traefik.http.routers.traefik.service=api@internal
+
+  glance:
+    image: glanceapp/glance
+    restart: unless-stopped
+    volumes:
+      - ./glance/glance.yml:/app/glance.yml
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.glance.rule=Host(`glance.localhost`)
+
+  actual:
+    image: docker.io/actualbudget/actual-server:latest
+    restart: unless-stopped
+    volumes:
+      - ./actual/data:/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.actual.rule=Host(`actual.localhost`)

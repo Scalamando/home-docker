@@ -1,0 +1,105 @@
+server:
+  base-url: https://glance.localhost
+branding:
+  hide-footer: true
+pages:
+  - name: Home
+    hide-desktop-navigation: true
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 24h
+
+          - type: calendar
+
+          - type: bookmarks
+            groups:
+              - links:
+                  - title: GitHub
+                    url: https://github.com/
+                    same-tab: true
+                  - title: AI Chat
+                    url: https://chat.localhost/
+                    same-tab: true
+                  - title: ChatGPT
+                    url: https://chatgpt.com/
+                    same-tab: true
+                  - title: YouTube
+                    url: https://youtube.de/
+                    same-tab: true
+                  - title: Google Maps
+                    url: https://www.google.de/maps
+                    same-tab: true
+                  - title: Wetter Online
+                    url: https://www.wetteronline.de/
+                    same-tab: true
+
+          - type: twitch-channels
+            channels:
+              - theprimeagen
+              - gronkh
+              - rlgym
+              - joov
+              - sovietwomble
+
+      - size: full
+        widgets:
+          - type: videos
+            channels:
+              - UCUyeluBRhGPCW4rPe_UvBZQ # ThePrimeTime
+              - UCWQaM7SpSECp9FELz-cHzuQ # Dreams of Code
+              - UC40Qux6JMAHiP34q6jja9Wg # Joov
+              - UCo71RUe6DX4w-Vd47rFLXPg # typecraft
+              - UCgdTVe88YVSrOZ9qKumhULQ # HardwareHaven
+
+          - type: group
+            widgets:
+              - type: hacker-news
+
+              - type: reddit
+                subreddit: selfhosted
+                show-thumbnails: true
+                collapse-after: 6
+
+              - type: rss
+                limit: 10
+                collapse-after: 3
+                cache: 3h
+                feeds:
+                  - url: https://www.joshwcomeau.com/rss.xml
+                    title: Josh Comeau
+                  - url: https://samwho.dev/rss.xml
+                    title: Sam Rose
+                  - url: https://ishadeed.com/feed.xml
+                    title: Ahmad Shadeed
+                  - url: https://kentcdodds.com/blog/rss.xml
+                    title: Kent C. Dodds
+                  - url: https://tkdodo.eu/blog/rss.xml
+                    title: TkDodo
+                  - url: http://feeds.feedburner.com/ThePragmaticEngineer
+                    title: ThePragmaticEngineer
+                  - url: https://lackofimagination.org/index.xml
+                    title: Lack Of Imagination
+
+      - size: small
+        widgets:
+          - type: weather
+            location: Lübeck, Germany
+
+          - type: markets
+            markets:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: DAX
+                name: DAX
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AAPL
+                name: Apple
+              - symbol: MSFT
+                name: Microsoft
+              - symbol: GOOGL
+                name: Google
+              - symbol: AMD
+                name: AMD
