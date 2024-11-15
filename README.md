@@ -11,9 +11,9 @@ dashboard](https://doc.traefik.io/traefik/operations/dashboard/).
 
 For HTTPS to work you need to generate local certificate files. I use [`mkcert`]() for this purpose:
 
-```sh
+```bash
 # If you're running mkcert for the first time
-mkcert -instal
+mkcert -install
 
 # Create certificates for all services
 mkcert \
