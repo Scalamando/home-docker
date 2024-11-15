@@ -30,6 +30,7 @@ services:
 
   glance:
     image: glanceapp/glance
+    container_name: glance
     restart: unless-stopped
     volumes:
       - ./glance/glance.yml:/app/glance.yml
@@ -41,6 +42,7 @@ services:
 
   actual:
     image: docker.io/actualbudget/actual-server:latest
+    container_name: actual
     restart: unless-stopped
     volumes:
       - ./actual/data:/data
