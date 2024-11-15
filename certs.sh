@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# get all host domains, remove empty lines
-HOSTS=$(awk -F '[`]' '{print $2}' compose.yml | sed -e '/^$/d')
+HOSTS=$(grep -oP '(?<=Host\(`).*(?=`\))' compose.yml)
 
 mkcert.exe \
     -cert-file traefik/certs/local-cert.pem \
