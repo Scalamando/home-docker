@@ -1,4 +1,4 @@
-# Local Service Setup using Docker 
+# Local Service Setup using Docker
 
 This respository contains my setup for some local services using docker. All
 services are reverse proxied through traefik on ports 80 and 443 to allow for
