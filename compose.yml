@@ -62,9 +62,13 @@ services:
       resources:
         reservations:
           devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+            - driver: cdi
+              device_ids:
+                - nvidia.com/gpu=all
+          # if you're not running NixOS-WSL you might need this instead
+          # - driver: nvidia
+          #   count: 1
+          #   capabilities: [gpu]
     labels:
       - traefik.enable=true
       - traefik.http.routers.ollama.rule=Host(`ollama.localhost`)
