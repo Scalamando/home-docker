@@ -8,7 +8,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik/certs:/etc/certs:ro
-      - ./traefik/traefik.yml:/traefik/traefik.yml:ro
+      - ./traefik:/traefik:ro
     security_opt:
       - no-new-privileges:true
     command:
@@ -32,8 +32,10 @@ services:
     image: glanceapp/glance
     container_name: glance
     restart: unless-stopped
+    command:
+      - "--config=/glance/glance.yml"
     volumes:
-      - ./glance/glance.yml:/app/glance.yml
+      - ./glance:/glance:ro
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     labels:
