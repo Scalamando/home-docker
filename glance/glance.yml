@@ -19,9 +19,6 @@ pages:
                   - title: GitHub
                     url: https://github.com/
                     same-tab: true
-                  - title: AI Chat
-                    url: https://chat.localhost/
-                    same-tab: true
                   - title: ChatGPT
                     url: https://chatgpt.com/
                     same-tab: true
